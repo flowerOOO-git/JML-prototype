@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>饮品OA通知通报-移动审批</title>
+  <style>
+    :root {
+      --bg: #f4f5f8;
+      --card: #ffffff;
+      --line: #eceff5;
+      --text: #1f2a44;
+      --muted: #8a93a6;
+      --danger: #d81e2a;
+      --green: #16b374;
+      --btn-border: #d84a57;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
+
+    .phone {
+      max-width: 480px;
+      margin: 0 auto;
+      min-height: 100vh;
+      background: var(--bg);
+      padding-bottom: 92px;
+    }
+
+    .status {
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      font-weight: 600;
+      font-size: 18px;
+      background: var(--card);
+    }
+
+    .status-right {
+      font-size: 15px;
+      color: #111827;
+      letter-spacing: 0.6px;
+    }
+
+    .nav {
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 12px;
+      background: var(--card);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-title {
+      font-size: 34px;
+      line-height: 1;
+      font-weight: 600;
+      transform: scale(0.52);
+      transform-origin: center;
+      white-space: nowrap;
+    }
+
+    .icon-btn {
+      border: 0;
+      background: transparent;
+      color: #1f2937;
+      font-size: 24px;
+      width: 34px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .toolbar {
+      background: var(--card);
+      border-bottom: 1px solid var(--line);
+      padding: 12px 14px 10px;
+    }
+
+    .toolbar-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .toolbar-title {
+      font-size: 33px;
+      font-weight: 700;
+      transform: scale(0.52);
+      transform-origin: left center;
+      white-space: nowrap;
+      margin-right: auto;
+    }
+
+    .small-action {
+      color: #4b5563;
+      font-size: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      border: 0;
+      background: transparent;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .pager {
+      margin-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      color: #6b7280;
+      font-size: 13px;
+    }
+
+    .section {
+      margin-top: 10px;
+      background: var(--card);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-title {
+      padding: 10px 14px;
+      color: var(--danger);
+      font-weight: 700;
+      font-size: 16px;
+      border-bottom: 1px solid var(--line);
+      background: #f9fafc;
+    }
+
+    .row {
+      display: flex;
+      gap: 10px;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      align-items: flex-start;
+    }
+
+    .row:last-child {
+      border-bottom: 0;
+    }
+
+    .label {
+      width: 108px;
+      color: #4b5563;
+      flex: 0 0 108px;
+      font-size: 16px;
+      line-height: 1.45;
+    }
+
+    .value {
+      flex: 1;
+      font-size: 17px;
+      line-height: 1.45;
+      color: #111827;
+      font-weight: 600;
+      word-break: break-word;
+    }
+
+    .urgency {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      color: #444;
+      font-weight: 500;
+      font-size: 17px;
+    }
+
+    .radio {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 1px solid #cfd5e3;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 12px;
+      line-height: 1;
+    }
+
+    .dot.active {
+      border-color: #e14c56;
+      background: #e14c56;
+    }
+
+    .empty {
+      text-align: center;
+      color: #b0b7c7;
+      padding: 18px 0;
+      font-size: 16px;
+      border-top: 1px solid var(--line);
+    }
+
+    .attach-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .attach-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      align-items: center;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+      background: #fff;
+    }
+
+    .attach-name {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: #111827;
+    }
+
+    .attach-op {
+      color: #8d96aa;
+      font-size: 12px;
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .attach-op button {
+      border: 0;
+      background: transparent;
+      color: inherit;
+      padding: 0;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .attach-op button svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vertical-align: middle;
+    }
+
+    .pdf-modal-mask {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 20, 40, 0.46);
+      backdrop-filter: blur(2px);
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    .pdf-modal {
+      width: 100%;
+      max-width: 480px;
+      background: #fff;
+      border-top-left-radius: 14px;
+      border-top-right-radius: 14px;
+      display: flex;
+      flex-direction: column;
+      max-height: 86vh;
+      overflow: hidden;
+    }
+
+    .pdf-modal-header {
+      padding: 12px 14px;
+      border-bottom: 1px solid #edf1f8;
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .pdf-close {
+      border: 0;
+      background: transparent;
+      font-size: 22px;
+      color: #6b7488;
+      width: 30px;
+      height: 30px;
+      line-height: 1;
+    }
+
+    .pdf-block {
+      padding: 10px 12px;
+      border-bottom: 1px solid #f0f3f9;
+    }
+
+    .pdf-block-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #33425f;
+      margin-bottom: 8px;
+    }
+
+    .pdf-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-height: 210px;
+      overflow: auto;
+      border: 1px solid #e8edf7;
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .pdf-list li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 10px;
+      border-bottom: 1px solid #f0f3f9;
+      font-size: 13px;
+    }
+
+    .pdf-list li:last-child {
+      border-bottom: 0;
+    }
+
+    .pdf-list input[type="checkbox"] {
+      width: 14px;
+      height: 14px;
+      accent-color: #f5222d;
+      margin: 0;
+      flex: 0 0 auto;
+    }
+
+    .pdf-name {
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .pdf-drag-handle {
+      border: 1px solid #e1e6f0;
+      background: #fff;
+      border-radius: 4px;
+      width: 22px;
+      height: 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #7f8ba1;
+      cursor: grab;
+      padding: 0;
+      flex: 0 0 auto;
+    }
+
+    .pdf-drag-handle svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+
+    .pdf-delete-btn {
+      border: 1px solid #f3ccd0;
+      background: #fff5f6;
+      border-radius: 4px;
+      width: 22px;
+      height: 22px;
+      color: #f5222d;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex: 0 0 auto;
+    }
+
+    .pdf-draggable-item {
+      cursor: grab;
+    }
+
+    .pdf-draggable-item.is-dragging {
+      opacity: 0.45;
+      cursor: grabbing;
+    }
+
+    .pdf-draggable-item.drag-over-top {
+      box-shadow: inset 0 2px 0 #f5222d;
+    }
+
+    .pdf-draggable-item.drag-over-bottom {
+      box-shadow: inset 0 -2px 0 #f5222d;
+    }
+
+    .pdf-empty {
+      color: #98a2b8;
+      font-size: 12px;
+      padding: 10px 12px;
+    }
+
+    .pdf-footer {
+      padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+      border-top: 1px solid #edf1f8;
+      background: #fff;
+    }
+
+    .pdf-status {
+      min-height: 18px;
+      color: #7b869d;
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+
+    .pdf-actions {
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    .pdf-btn {
+      border: 1px solid #f5222d;
+      color: #f5222d;
+      background: #fff;
+      border-radius: 6px;
+      min-width: 84px;
+      height: 34px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .pdf-btn.primary {
+      background: #f5222d;
+      color: #fff;
+    }
+
+    .bottom-actions {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--card);
+      border-top: 1px solid #e7eaf3;
+      display: flex;
+      gap: 10px;
+      padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .btn {
+      flex: 1;
+      min-width: 0;
+      height: 44px;
+      border-radius: 7px;
+      border: 1px solid var(--btn-border);
+      background: #fff;
+      color: #bb2430;
+      font-size: 17px;
+      font-weight: 600;
+      white-space: nowrap;
+      line-height: 44px;
+      text-align: center;
+      padding: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .btn.pass {
+      border-color: var(--green);
+      background: var(--green);
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="phone">
+    <header class="status">
+      <span>06:38</span>
+      <span class="status-right">◦◦◦  ◠◡◠  100</span>
+    </header>
+
+    <nav class="nav">
+      <button class="icon-btn" type="button" aria-label="返回">‹</button>
+      <button class="icon-btn" type="button" aria-label="关闭">×</button>
+      <div class="nav-title">饮品OA通知通报</div>
+      <button class="icon-btn" type="button" aria-label="更多">…</button>
+    </nav>
+
+    <div class="toolbar">
+      <div class="toolbar-top">
+        <div class="toolbar-title">饮品OA通知通报</div>
+        <button id="pdfDownloadBtn" class="small-action" type="button">🖨 PDF下载</button>
+        <span class="small-action">🗂 流转记录</span>
+      </div>
+      <div class="pager">
+        <span>⌃ 上一条</span>
+        <span>⌄ 下一条</span>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="section-title">申请人信息</div>
+      <div class="row">
+        <div class="label">提交时间:</div>
+        <div class="value">2026-05-12 23:37:48</div>
+      </div>
+      <div class="row">
+        <div class="label">流程单号:</div>
+        <div class="value">TBTZ-202605120041</div>
+      </div>
+      <div class="row">
+        <div class="label">申请人:</div>
+        <div class="value">超级管理员(admin)</div>
+      </div>
+      <div class="row">
+        <div class="label">紧急程度:</div>
+        <div class="value urgency">
+          <span class="radio"><span class="dot active">✓</span>一般</span>
+          <span class="radio"><span class="dot"></span>重要</span>
+          <span class="radio"><span class="dot"></span>紧急</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="label">申请人部门:</div>
+        <div class="value">今麦郎食品股份有限公司/面品营销中心/湖南南战区</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">基本信息</div>
+      <div class="row">
+        <div class="label">标题:</div>
+        <div class="value">ccc</div>
+      </div>
+      <div class="row">
+        <div class="label">内容:</div>
+        <div class="value">ccc</div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="row" style="border-bottom:0;">
+        <div class="label" style="width:auto;flex:auto;color:#1f2937;font-weight:700;">上传附件</div>
+      </div>
+      <ul id="attachList" class="attach-list"></ul>
+    </section>
+
+    <section class="section">
+      <div class="section-title">审批人信息</div>
+    </section>
+  </div>
+
+  <div class="bottom-actions">
+    <button class="btn pass" type="button">审核通过</button>
+    <button class="btn" type="button">抄送</button>
+    <button class="btn" type="button">更多操作...</button>
+  </div>
+  <div id="pdfModalMask" class="pdf-modal-mask">
+    <div class="pdf-modal" role="dialog" aria-modal="true" aria-label="PDF下载">
+      <div class="pdf-modal-header">
+        <span>PDF下载配置</span>
+        <button id="pdfModalClose" class="pdf-close" type="button" aria-label="关闭">×</button>
+      </div>
+      <div class="pdf-block">
+        <div class="pdf-block-title">附件列表（多选）</div>
+        <ul id="pdfAttachmentList" class="pdf-list"></ul>
+      </div>
+      <div class="pdf-block">
+        <div class="pdf-block-title">已选附件顺序（可拖拽）</div>
+        <ul id="pdfSelectedList" class="pdf-list"></ul>
+      </div>
+      <div class="pdf-footer">
+        <div id="pdfStatus" class="pdf-status"></div>
+        <div class="pdf-actions">
+          <button id="pdfModalCancel" class="pdf-btn" type="button">取消</button>
+          <button id="pdfModalConfirm" class="pdf-btn primary" type="button">确定下载</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const attachmentsData = [
+      { id: "__form_pdf__", name: "表单.pdf", ext: "pdf", url: "", isForm: true },
+      { id: "a1", name: "食品事业部子公司印章使用申请-SPBZ-202512180002.pdf", ext: "pdf", url: "" },
+      { id: "a2", name: "4.1平台技术架构图_V1.pptx", ext: "pptx", url: "" },
+      { id: "a3", name: "流程信息报表20260415_103237.xlsx", ext: "xlsx", url: "" },
+      { id: "a4", name: "负载均衡SLB.svg", ext: "svg", url: "" },
+      { id: "a5", name: "企业微信截图_17757282527975.png", ext: "png", url: "" }
+    ];
+
+    const attachListEl = document.getElementById("attachList");
+    const pdfDownloadBtn = document.getElementById("pdfDownloadBtn");
+    const pdfModalMask = document.getElementById("pdfModalMask");
+    const pdfAttachmentListEl = document.getElementById("pdfAttachmentList");
+    const pdfSelectedListEl = document.getElementById("pdfSelectedList");
+    const pdfStatusEl = document.getElementById("pdfStatus");
+    const pdfModalCloseBtn = document.getElementById("pdfModalClose");
+    const pdfModalCancelBtn = document.getElementById("pdfModalCancel");
+    const pdfModalConfirmBtn = document.getElementById("pdfModalConfirm");
+
+    let selectedOrder = [];
+    let pdfDownloading = false;
+    let draggingFileId = null;
+
+    const titleText = "ccc";
+
+    const renderAttachments = () => {
+      if (!attachmentsData.length) {
+        attachListEl.innerHTML = `<li class="empty">暂无数据</li>`;
+        return;
+      }
+      attachListEl.innerHTML = "";
+      attachmentsData.forEach((file) => {
+        const li = document.createElement("li");
+        li.className = "attach-item";
+        const isPdf = file.ext === "pdf";
+        const isPng = file.ext === "png";
+        li.innerHTML = `
+          <span class="attach-name" title="${file.name}">${file.name}</span>
+          <span class="attach-op">
+            ${isPdf || isPng ? `<button type="button" title="预览" aria-label="预览">
+              <svg viewBox="0 0 24 24">
+                <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"></path>
+                <circle cx="12" cy="12" r="2.8"></circle>
+              </svg>
+            </button>` : ""}
+            ${!isPng ? `<button type="button" title="下载">⤓</button>` : ""}
+          </span>
+        `;
+        attachListEl.appendChild(li);
+      });
+    };
+
+    const setPdfStatus = (text) => {
+      pdfStatusEl.textContent = text || "";
+    };
+
+    const renderPdfModal = () => {
+      pdfAttachmentListEl.innerHTML = "";
+      pdfSelectedListEl.innerHTML = "";
+
+      attachmentsData.forEach((file) => {
+        const checked = selectedOrder.includes(file.id);
+        const li = document.createElement("li");
+        li.style.cursor = "pointer";
+        li.innerHTML = `
+          <input type="checkbox" ${checked ? "checked" : ""} />
+          <span class="pdf-name" title="${file.name}">${file.name}</span>
+        `;
+        const checkbox = li.querySelector("input[type='checkbox']");
+        const applyCheckedState = (nextChecked) => {
+          if (nextChecked) {
+            if (!selectedOrder.includes(file.id)) selectedOrder.push(file.id);
+          } else {
+            selectedOrder = selectedOrder.filter((id) => id !== file.id);
+          }
+          renderPdfModal();
+        };
+        checkbox.addEventListener("change", () => applyCheckedState(checkbox.checked));
+        li.addEventListener("click", (event) => {
+          if (event.target === checkbox) return;
+          checkbox.checked = !checkbox.checked;
+          applyCheckedState(checkbox.checked);
+        });
+        pdfAttachmentListEl.appendChild(li);
+      });
+
+      if (!selectedOrder.length) {
+        pdfSelectedListEl.innerHTML = `<li class="pdf-empty">请先勾选附件</li>`;
+      } else {
+        selectedOrder.forEach((id, index) => {
+          const file = attachmentsData.find((f) => f.id === id);
+          if (!file) return;
+          const li = document.createElement("li");
+          li.classList.add("pdf-draggable-item");
+          li.draggable = true;
+          li.dataset.fileId = id;
+          li.innerHTML = `
+            <button class="pdf-drag-handle" type="button" title="拖拽排序">
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <circle cx="5" cy="3.5" r="1.1"></circle>
+                <circle cx="11" cy="3.5" r="1.1"></circle>
+                <circle cx="5" cy="8" r="1.1"></circle>
+                <circle cx="11" cy="8" r="1.1"></circle>
+                <circle cx="5" cy="12.5" r="1.1"></circle>
+                <circle cx="11" cy="12.5" r="1.1"></circle>
+              </svg>
+            </button>
+            <span class="pdf-name" title="${file.name}">${index + 1}. ${file.name}</span>
+            <button class="pdf-delete-btn" type="button" title="删除（取消勾选）">×</button>
+          `;
+
+          li.addEventListener("dragstart", (event) => {
+            draggingFileId = id;
+            li.classList.add("is-dragging");
+            if (event.dataTransfer) {
+              event.dataTransfer.effectAllowed = "move";
+              try {
+                event.dataTransfer.setData("text/plain", id);
+              } catch (_) {}
+            }
+          });
+          li.addEventListener("dragend", () => {
+            draggingFileId = null;
+            li.classList.remove("is-dragging");
+            pdfSelectedListEl.querySelectorAll(".drag-over-top, .drag-over-bottom").forEach((el) => {
+              el.classList.remove("drag-over-top", "drag-over-bottom");
+            });
+          });
+          li.addEventListener("dragover", (event) => {
+            if (!draggingFileId || draggingFileId === id) return;
+            event.preventDefault();
+            const rect = li.getBoundingClientRect();
+            const insertBefore = event.clientY < rect.top + rect.height / 2;
+            li.classList.toggle("drag-over-top", insertBefore);
+            li.classList.toggle("drag-over-bottom", !insertBefore);
+          });
+          li.addEventListener("dragleave", () => {
+            li.classList.remove("drag-over-top", "drag-over-bottom");
+          });
+          li.addEventListener("drop", (event) => {
+            event.preventDefault();
+            if (!draggingFileId || draggingFileId === id) return;
+            const fromIndex = selectedOrder.indexOf(draggingFileId);
+            if (fromIndex < 0) return;
+            const [moved] = selectedOrder.splice(fromIndex, 1);
+            let targetIndex = selectedOrder.indexOf(id);
+            const rect = li.getBoundingClientRect();
+            const insertBefore = event.clientY < rect.top + rect.height / 2;
+            if (!insertBefore) targetIndex += 1;
+            if (targetIndex < 0) targetIndex = selectedOrder.length;
+            selectedOrder.splice(targetIndex, 0, moved);
+            renderPdfModal();
+          });
+
+          const deleteBtn = li.querySelector(".pdf-delete-btn");
+          deleteBtn.addEventListener("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            selectedOrder = selectedOrder.filter((x) => x !== id);
+            renderPdfModal();
+          });
+
+          pdfSelectedListEl.appendChild(li);
+        });
+      }
+    };
+
+    const openPdfModal = () => {
+      selectedOrder = attachmentsData.filter((x) => x.isForm).map((x) => x.id);
+      setPdfStatus("");
+      renderPdfModal();
+      pdfModalMask.style.display = "flex";
+    };
+
+    const closePdfModal = () => {
+      if (pdfDownloading) return;
+      pdfModalMask.style.display = "none";
+    };
+
+    const loadPdfLib = async () => {
+      if (window.PDFLib) return window.PDFLib;
+      await new Promise((resolve, reject) => {
+        const script = document.createElement("script");
+        script.src = "https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js";
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+      });
+      return window.PDFLib;
+    };
+
+    const createPlaceholderPdf = async (PDFLib, fileName, note) => {
+      const pdf = await PDFLib.PDFDocument.create();
+      const page = pdf.addPage([595, 842]);
+      const font = await pdf.embedFont(PDFLib.StandardFonts.Helvetica);
+      page.drawText("Attachment To PDF Placeholder", { x: 40, y: 790, size: 16, font });
+      page.drawText(`File: ${fileName}`, { x: 40, y: 760, size: 12, font });
+      page.drawText(note || "Unsupported file type in pure frontend conversion.", { x: 40, y: 735, size: 11, font });
+      return pdf.save();
+    };
+
+    const createFormPdf = async (PDFLib) => {
+      const pdf = await PDFLib.PDFDocument.create();
+      const page = pdf.addPage([595, 842]);
+      const font = await pdf.embedFont(PDFLib.StandardFonts.Helvetica);
+      page.drawText("Form Export PDF", { x: 40, y: 790, size: 18, font });
+      page.drawText(`Summary: ${titleText || "通用申请"}`, { x: 40, y: 760, size: 12, font });
+      page.drawText("Flow No: TBTZ-202605120041", { x: 40, y: 736, size: 12, font });
+      page.drawText(`Generated: ${new Date().toLocaleString()}`, { x: 40, y: 712, size: 11, font });
+      return pdf.save();
+    };
+
+    const fetchBinary = async (url) => {
+      const resp = await fetch(url);
+      if (!resp.ok) throw new Error("附件下载失败");
+      return resp.arrayBuffer();
+    };
+
+    const imageToPdf = async (PDFLib, bytes, ext) => {
+      const pdf = await PDFLib.PDFDocument.create();
+      const page = pdf.addPage([595, 842]);
+      const img = ext === "png" ? await pdf.embedPng(bytes) : await pdf.embedJpg(bytes);
+      const scale = Math.min((595 - 60) / img.width, (842 - 80) / img.height);
+      const w = img.width * scale;
+      const h = img.height * scale;
+      page.drawImage(img, { x: (595 - w) / 2, y: (842 - h) / 2, width: w, height: h });
+      return pdf.save();
+    };
+
+    const convertAttachmentToPdf = async (PDFLib, file) => {
+      if (file.isForm) return createFormPdf(PDFLib);
+      const ext = (file.ext || "").toLowerCase();
+      if (!file.url) {
+        return createPlaceholderPdf(PDFLib, file.name, "No downloadable URL found in current H5 mock.");
+      }
+      if (ext === "pdf") return fetchBinary(file.url);
+      if (["png", "jpg", "jpeg"].includes(ext)) {
+        const bytes = await fetchBinary(file.url);
+        return imageToPdf(PDFLib, bytes, ext === "png" ? "png" : "jpg");
+      }
+      return createPlaceholderPdf(PDFLib, file.name, "Converted as placeholder for non-image/non-pdf file.");
+    };
+
+    const mergeAndDownloadSelected = async () => {
+      if (pdfDownloading) return;
+      if (!selectedOrder.length) {
+        setPdfStatus("请先勾选至少一个附件。");
+        return;
+      }
+
+      pdfDownloading = true;
+      pdfModalConfirmBtn.disabled = true;
+      try {
+        setPdfStatus("正在加载PDF能力...");
+        const PDFLib = await loadPdfLib();
+        const merged = await PDFLib.PDFDocument.create();
+        const selectedFiles = selectedOrder.map((id) => attachmentsData.find((f) => f.id === id)).filter(Boolean);
+
+        for (let i = 0; i < selectedFiles.length; i += 1) {
+          const file = selectedFiles[i];
+          setPdfStatus(`正在处理 (${i + 1}/${selectedFiles.length})：${file.name}`);
+          const pdfBytes = await convertAttachmentToPdf(PDFLib, file);
+          const srcDoc = await PDFLib.PDFDocument.load(pdfBytes);
+          const pages = await merged.copyPages(srcDoc, srcDoc.getPageIndices());
+          pages.forEach((p) => merged.addPage(p));
+        }
+
+        setPdfStatus("正在合并并下载...");
+        const mergedBytes = await merged.save();
+        const blob = new Blob([mergedBytes], { type: "application/pdf" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        const summary = (titleText || "通用申请").replace(/[\\/:*?"<>|]/g, "_");
+        a.href = url;
+        a.download = `${summary}.pdf`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+        setPdfStatus("下载已触发。");
+        setTimeout(() => { pdfModalMask.style.display = "none"; }, 350);
+      } catch (error) {
+        setPdfStatus(`处理失败：${error.message || error}`);
+      } finally {
+        pdfDownloading = false;
+        pdfModalConfirmBtn.disabled = false;
+      }
+    };
+
+    pdfDownloadBtn.addEventListener("click", openPdfModal);
+    pdfModalCloseBtn.addEventListener("click", closePdfModal);
+    pdfModalCancelBtn.addEventListener("click", closePdfModal);
+    pdfModalMask.addEventListener("click", (event) => {
+      if (event.target === pdfModalMask) closePdfModal();
+    });
+    pdfModalConfirmBtn.addEventListener("click", mergeAndDownloadSelected);
+
+    renderAttachments();
+  </script>
+</body>
+</html>
