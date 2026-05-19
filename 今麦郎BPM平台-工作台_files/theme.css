@@ -1,0 +1,500 @@
+@import url('./src/menu.css');
+@import url('./src/input.css');
+@import url('./src/radio.css');
+@import url('./src/button.css');
+@import url('./src/table.css');
+@import url('./src/icon.css');
+@import url('./src/checkbox.css');
+@import url('./src/dropdown.css');
+@import url('./src/tree.css');
+@import url('./src/date.css');
+@import url('./src/tabs.css');
+@import url('./src/pagination.css');
+@import url('./src/steps.css');
+@import url('./src/common.css');
+
+  /* 首页快捷发起 */
+.card-content .menulist .menu-item:hover,
+.card-content .menulist .menu-item:hover i.paifont {
+  color: var(--color-primary);
+}
+
+/* 抽屉 顶部关闭按钮颜色 */
+.el-drawer .header-icon{
+  color: var(--drawer-closeBtn-color);
+  background-color: var(--drawer-closeBtn-background-color);
+}
+
+/* Breadcrumb 面包屑*/
+.app-breadcrumb .el-breadcrumb .el-breadcrumb__item .el-breadcrumb__inner.is-link,
+.app-breadcrumb .el-breadcrumb .el-breadcrumb__item .el-breadcrumb__inner.is-link:hover{
+  color: var(--breadcrumb-text-color);
+}
+
+
+/* 级联选择器选中后的颜色 */
+body.el-cascader-node.in-active-path,
+body.el-cascader-node.is-active,
+body.el-cascader-node.is-selectable.in-checked-path {
+  color: var(--cascader-active-color);
+}
+
+/* switch开关激活状态下的颜色 */
+body .el-switch.is-checked .el-switch__core {
+  border-color: var(--switch-active-color);
+  background-color: var(--switch-active-color);
+}
+/* switch开关激活状态下文字的颜色 */
+body .el-switch__label.is-active {
+  color: var(--switch-active-color);
+}
+
+/* slider选中部分的背景色 */
+body .el-slider__bar {
+  background-color: var(--slider-active-color);
+}
+/* slider选中节点的边框颜色 */
+body .el-slider__button {
+  border-color: var(--slider-active-color)
+}
+
+
+/* 发起流程 */
+.theme-fill-primary-color {
+  background-color: var(--color-primary);
+}
+
+/* 工作台 */
+.biz-integrated .eltabBackground .UnReadCount {
+  background-color: var(--color-unread);
+}
+  /* 列表模式-我的抄送-表格上方未读条数颜色 */
+.biz-integrated-copy .flexStyle .unReadCount,
+  /* 列表模式-我的沟通-表格上方待回复条数颜色 */
+.myCommunication .flexStyle .unReadCount,
+  /* 卡片模式-我的沟通-表格上方未读条数颜色 */
+.integrated-copy-view .flexStyle .unReadCount,
+  /* 卡片模式-我的抄送-表格上方未读条数颜色 */
+.integrated-communicate-view .unReadCount {
+  color: var(--color-primary);
+}
+  /* 列表模式-我的抄送-表格上方未读条数颜色 */
+.biz-integrated-copy .flexStyle .dot,
+  /* 列表模式-我的沟通-表格上方待回复条数颜色 */
+.myCommunication .flexStyle .dot,
+  /* 卡片模式-我的抄送-表格上方未读条数颜色 */
+.integrated-copy-view .flexStyle .dot,
+  /* 卡片模式-我的沟通-表格上方待回复条数颜色 */
+.integrated-communicate-view .dot {
+  background-color: var(--color-primary);
+}
+  /* 卡片模式 */
+  /* 我的待办左侧选中状态下Border */
+.agenecy-card:hover::after {
+  border-color: transparent transparent var(--color-primary);
+}
+  /* 我的待办-流程单号 */
+.agenecy-card .agenecy-card-header .header-left .agenecy-msg .agenecy-msg-bom .hand,
+  /* 我的待办-折叠面板（收起/展开） */
+.agenecy-card .agenecy-collapse .collapsemsgRight {
+  color: var(--color-primary);
+}
+
+/* 我的代理 */
+/* 列表-描述 */
+.personalagency .special,
+/* 列表-代理揭露 */
+.personalagency .record .active {
+  color: var(--color-primary-light-7);
+}
+
+
+/* 开发中心-流程设计器左上三角形颜色 */
+.process-viewShow .process-left .process-left-icon {
+  background: linear-gradient(315deg, transparent 50%, var(--color-primary-light-7) 0%) no-repeat;
+}
+/* 开发中心-流程设计器tab选中背景色 */
+.process-viewShow .process-left .el-tabs__item.is-active {
+  background-color: var(--tabs-active-fill-color);
+}
+/* 开发中心-流程设计器（固定/取消固定背景色） */
+.process-lately .process-data .process-collapse .acticeFixed-active:hover,
+.process-lately .process-data .process-collapse .acticeFixed:hover {
+  color: var(--primary-icon);
+  background-color: var(--color-primary-light-2);
+}
+/* 开发中心-流程设计器（右侧帮助列表图标颜色） */
+.process-rights .process-rights-help .process-collapse-ul .process-icon{
+  color: var(--primary-icon);
+  background-color: var(--color-primary-light-1);
+}
+/* 开发中心-流程设计器（左侧列表鼠标悬停颜色） */
+.process-lately .process-data .process-collapse .el-row:hover,
+/* 开发中心-流程设计器（右侧帮助列表鼠标悬停颜色） */
+.process-rights .process-rights-help .process-collapse-ul li:hover,
+/* 开发中心-流程设计器（我的流程列表hover时背景色） */
+.process-myself .process-data .process-collapse .el-row:hover {
+  background-color: var(--color-primary-light-1);
+}
+/* 开发中心-流程设计器（右侧帮助手册背景色） */
+.process-rights .process-rights-help .process-collapse-item .title-help i {
+  background-color: var(--color-primary);
+}
+/* 开发中心-流程设计器（打开流程-表单列表选中效果） */
+.compound-process .common-ul-area li.isActive,
+.compound-process .common-ul-area .multiple-li.isActive,
+  /* 开发中心-流程设计器（打开流程-表单列表鼠标悬停效果） */
+.compound-process .common-ul-area li:hover,
+.compound-process .common-ul-area .multiple-li:hover,
+  /* 开发中心-流程设计器（打开流程-表单版本列表鼠标悬停效果） */
+.compound-process .common-ul-area .detail-ul li:hover {
+  background-color: var(--color-primary-light-1);
+}
+/* 开发中心-流程设计器（打开流程-表单列表、表单版本列表选中竖线颜色） */
+.compound-process .common-ul-area li.isActive:after,
+.compound-process .common-ul-area .multiple-li.isActive:after {
+  border-color: var(--color-primary);
+}
+/* 开发中心-流程设计器（打开流程-表单版本选中图标颜色） */
+.compound-process .common-ul-area li .check-icon,
+.compound-process .common-ul-area .multiple-li .check-icon,
+/* 开发中心-流程设计器（新建流程-图标颜色：目前无效） */
+.process-viewShow .k2-media__icon .paifont {
+  color: var(--color-primary);
+}
+/* 开发中心-流程设计器（新建流程-选中后边框颜色） */
+.k2-media.is-active {
+  border: 1px solid var(--color-primary);
+}
+/* 开发中心-流程设计器（新建流程-） */
+.process-viewShow .k2-media__icon {
+  background-color: var(--color-primary-light-1);
+}
+
+
+/* 流程选择器（已选数据hover） */
+.choosepersoned-top .choosepersoned .personnal .el-tag:hover .deleteperson .department,
+/* 人员选择器（组织人员面包屑） */
+.choosepath-breadcrumb-link,
+.choosepath-breadcrumb-link:hover,
+.choosepath-breadcrumb-link:focus,
+.choosepath-breadcrumb-link:active,
+/* 人员选择器-单选右侧选中图标 */
+.is-radio .choosepersonnellist-iteminfo.is-checked .el-icon-check,
+/* 组织选择器-单选选中右侧图标 */
+.common-recently .is-radio .choosepersonnellist-item .part-container .part-area .check-icon,
+.common-recently .is-checkbox .choosepersonnellist-item .part-container .part-area .check-icon,
+/* 表单选择器-单选选中右侧图标 */
+.compound-form .common-ul-area li .check-icon,
+.compound-form .common-ul-area .multiple-li .check-icon,
+/* 流水号规则-单选选中右侧图标颜色 */
+.common-serial-rule .is-radio .choosepersonnellist-item .part-container .part-area .check-icon,
+.common-serial-rule .is-checkbox .choosepersonnellist-item .part-container .part-area .check-icon,
+/* 规则选择器-单选选中状态右侧图标 */
+.common-rule .is-radio .choosepersonnellist-item .part-container .part-area .check-icon,
+.common-rule .is-checkbox .choosepersonnellist-item .part-container .part-area .check-icon,
+/* 短信模板-单选选中右侧图标 */
+.common-template .is-radio .choosepersonnellist-item .part-container .part-area .check-icon,
+.common-template .is-checkbox .choosepersonnellist-item .part-container .part-area .check-icon,
+/* 选择摘要模板-表单字段-右侧选中图标 */
+.abstract-template .main-wrap .col-right .main-wrap .form-tree .custom-tree-node.form-tree-node .paifont.pai-duigou1 {
+  color: var(--color-primary);
+}
+/* 最近列表-鼠标hover显示背景色 */
+.common-recently .is-radio .part-container .part-area:hover,
+/* 人员选择器-面包屑背景色 */
+.choosepath-breadcrumb,
+/* 人员选择器-已收藏人员-鼠标hover效果 */
+.person-collected .is-radio .choosepersonnellist-item [class*="el-col"] .iteminfo:hover,
+/* 人员选择器-已收藏人员-多选-选中样式 */
+.person-collected .el-col.is-checked,
+  /* 人员选择器-已收藏人员-多选-鼠标悬停样式 */
+.person-collected .choosepersonnellist-item .el-col:hover,
+/* 人员选择器-全部人员-鼠标hover效果 */
+.person-all .is-radio .choosepersonnellist-item [class*="el-col"] .iteminfo:hover,
+/* 人员选择器-全部人员-选中后背景色 */
+.is-radio .choosepersonnellist-iteminfo.is-checked,
+/* 人员选择器-全部人员-多选-选中效果 */
+.person-all .el-col.is-checked,
+/* 人员选择器-全部人员-多选-鼠标hover效果 */
+.person-all .choosepersonnellist-item .el-col:hover,
+/* 人员选择器-组织人员-右侧列表鼠标hover背景色 */
+.compound-organize .is-radio .choosepersonnellist-item [class*="el-col"]:hover,
+/* 人员选择器-组织人员-多选-右侧列表鼠标hover背景色 */
+.compound-organize .el-col:hover,
+/* 人员选择器-组织人员-多选-右侧列表鼠标hover背景色 */
+.compound-organize .el-col.is-checked,
+/* 组织选择器-选中后的背景颜色 */
+.common-recently .is-radio .choosepersonnellist-item .part-container .part-area.is-checked,
+.common-recently .is-checkbox .choosepersonnellist-item .part-container .part-area.is-checked,
+/* 表单选择器-表单列表-选中后的背景色 */
+.compound-form .common-ul-area li.isActive,
+.compound-form .common-ul-area .multiple-li.isActive,
+/* 表单选择器-表单版本列表-选中后的背景色 */
+.compound-form .common-ul-area li.isActive,
+.compound-form .common-ul-area .multiple-li.isActive,
+/* 流水号规则-鼠标悬停后背景色 */
+.common-serial-rule .is-radio .part-container .part-area:hover,
+/* 流水号规则-列表数据选中后背景色 */
+.common-serial-rule .is-radio .choosepersonnellist-item .part-container .part-area.is-checked,
+.common-serial-rule .is-checkbox .choosepersonnellist-item .part-container .part-area.is-checked,
+/* 选择摘要模板-摘要规则-选中背景色 */
+.abstract-template .main-wrap .col-middle .abstract-main-wrap .abstract-item.active,
+/* 选择照耀模板-摘要规则-鼠标hover时背景色 */
+.abstract-template .main-wrap .col-middle .abstract-main-wrap .abstract-item:hover,
+/* 规则选择器-选中状态背景色 */
+.common-rule .is-radio .choosepersonnellist-item .part-container .part-area.is-checked,
+.common-rule .is-checkbox .choosepersonnellist-item .part-container .part-area.is-checked,
+/* (短信/邮件)模板-选中状态背景色 */
+.common-template .is-radio .choosepersonnellist-item .part-container .part-area.is-checked,
+.common-template .is-checkbox .choosepersonnellist-item .part-container .part-area.is-checked,
+/* (短信/邮件)模板-鼠标悬停背景色 */
+.common-template .is-radio .part-container .part-area:hover,
+/* 流程选择器(最近板块)-列表数据鼠标悬浮后背景色 */
+.common-recently .is-checkbox .part-container .el-checkbox:hover,
+/* 流程选择器(最近板块)-列表数据选中后背景色 */
+.common-recently .is-checkbox .part-container .el-checkbox.is-checked,
+/* 流程选择器(全部板块)-右侧列表数据选中后背景色 */
+.compound-process .common-ul-area .multiple-li .is-checked,
+/* 流程选择器(全部板块)-右侧列表数据鼠标悬浮后背景色 */
+.compound-process .common-ul-area .multiple-li:hover{
+  background-color: var(--color-primary-light-1);
+}
+
+/* 人员选择器-单选左侧选中竖线 */
+.is-radio .choosepersonnellist-iteminfo.is-checked .line,
+/* 组织选择器-单选左侧中竖线 */
+.common-recently .is-radio .choosepersonnellist-item .part-container .part-area.is-checked:after,
+.common-recently .is-checkbox .choosepersonnellist-item .part-container .part-area.is-checked:after,
+/* 表单选择器-单选左侧中竖线 */
+.compound-form .common-ul-area li.isActive:after,
+.compound-form .common-ul-area .multiple-li.isActive:after,
+/* 流水号规则-数据选中后左侧中竖线 */
+.common-serial-rule .is-radio .choosepersonnellist-item .part-container .part-area.is-checked:after,
+.common-serial-rule .is-checkbox .choosepersonnellist-item .part-container .part-area.is-checked:after,
+/* 选择摘要模板-摘要规则-中竖线颜色 */
+.abstract-template .main-wrap .col-middle .abstract-main-wrap .abstract-item.active:before,
+/* 规则选择器-选中状态中竖线 */
+.common-rule .is-radio .choosepersonnellist-item .part-container .part-area.is-checked:after,
+.common-rule .is-checkbox .choosepersonnellist-item .part-container .part-area.is-checked:after,
+/* 短信模板-选中状态中竖线 */
+.common-template .is-radio .choosepersonnellist-item .part-container .part-area.is-checked:after,
+.common-template .is-checkbox .choosepersonnellist-item .part-container .part-area.is-checked:after{
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+/* 选择摘要模板-未设置数据字体颜色 */
+.abstract-template .main-wrap .col-middle .abstract-main-wrap .abstract-item .right .setUp {
+  color: var(--color-primary-light-7);
+}
+
+/* 流程实例管理流程卡片鼠标悬浮左侧凸起颜色 */
+.ProcessCard:hover .top::after,
+/* 公共侧边栏menu选中和鼠标悬浮左侧凸起颜色 */
+.commonBorderActive:after,.commonBorderActive:hover::after,
+/* 错单管理卡片鼠标悬浮左侧凸起颜色 */
+.errorCard .mainContent .tableContent .table-box .box-card .el-card__header:hover::after{
+  border-color: var(--color-transparent) var(--color-transparent) var(--color-primary);
+}
+
+
+/* 弹窗-竖版已选区- */
+/* 选中行背景色 */
+body .selectedUl ul li{
+  background-color: var(--color-primary-light-1);
+}
+/* 选中行左侧标题文字 */
+body .selectedUl .floatLeft,
+/* 选中行右侧图标 */
+body .selectedUl ul li .iconOrganization,
+/* 弹窗-清空行 */
+body .selectedUl p,
+body .selectedUl .selectedUl-leftcontent,
+body .selectedUl .el-icon-delete{
+  color: var(--color-primary);
+}
+
+
+/* 配置规则悬浮框-新增规则按钮 */
+.popoverclass .popover_btn,
+/* 配置规则悬浮框-选中行文本颜色 */
+.popoverclass .popover_list .active_span {
+  color: var(--color-primary);
+}
+/* 运维管理平台 -> 授权中心 ->人员权限调整 列表鼠标悬浮“合计”字体颜色  */
+.k2-list-fill:hover .underline > span{
+  color: var(--color-primary);
+}
+/* 运维管理平台 -> 运维中心 ->表单结构化管理->表单结构化配置 左侧树状列表行操作图标背景色  */
+.tree .custom-tree-node .hover-icons .paifont:hover{
+  background-color: var(--color-primary-light-2);
+}
+
+/* 组合框 左侧标题前面的图标 */
+.group-box .group-box-header .header-left .paifont{
+  color: var(--primary-icon);
+}
+
+/* 流程配置-节点列表-选人规则列-规则类型按钮 */
+.standard-rule .collapse-body .el-tabs--card .el-tabs__header .el-tabs__item.is-active {
+  background-color: var(--color-primary);
+  color: var(--color-fill-text-white);
+}
+/* 流程配置-节点列表-选人规则列-场景列表按钮 */
+#app .node-list .node-list-table .scenes-setting{
+  background-color: var(--background-scenes-setting);
+  color: var(--color-scenes-setting);
+}
+/* 流程配置-节点列表-选人规则（齿轮图标）未配置 */
+#app .el-table .not-setting {
+  color: var(--color-not-setting);
+  background: var(--background-not-setting);
+  border: var(--border-not-setting);
+}
+.el-dialog__body .el-table .not-setting {
+  color: var(--color-not-setting);
+  background: var(--background-not-setting);
+  border: var(--border-not-setting);
+}
+/* 流程配置-节点列表-选人规则（齿轮图标）已配置 */
+#app .el-table .active-setting {
+  color: var(--color-active-setting);
+  background: var(--background-active-setting);
+  border: var(--border-active-setting);
+}
+.el-dialog__body .el-table .active-setting {
+  color: var(--color-active-setting);
+  background: var(--background-active-setting);
+  border: var(--border-active-setting);
+}
+
+/* 开发中心-流程规则池-被引用次数弹窗（左侧菜单） */
+.referenced_rules_content .activeType,
+/* 组件中心-API管理-API管理详情-左侧菜单 */
+.api-details .sidebar-left .sidebar-ul:hover,
+.api-details .sidebar-left .sidebar-ul.is-activte{
+  color: var(--color-primary);
+  background-color: var(--color-primary-light-1);
+}
+/* 开发中心-流程规则池-被引用次数弹窗（左侧菜单）中竖线 */
+.referenced_rules_content .activeType::before,
+/* 组件中心-API管理-API管理详情-左侧菜单中竖线 */
+.api-details .sidebar-left .sidebar-ul:hover:before,
+.api-details .sidebar-left .sidebar-ul.is-activte:before{
+  background-color: var(--color-primary);
+}
+/* 开发中心-流程规则池-被引用次数弹窗（左侧菜单）鼠标hover效果 */
+.referenced_rules_content > div:hover {
+  background-color: var(--color-primary-light-1);
+}
+/* MessageBox 弹框头部右侧关闭图标hover样式 */
+.el-message-box .el-message-box__headerbtn:focus .el-message-box__close,
+.el-message-box .el-message-box__headerbtn:hover .el-message-box__close{
+  color: var(--color-primary);
+}
+/* 系统设置首页logo图片背景色 */
+.interface-setup .logoAvatar.home-logo{
+  background-color: var(--color-primary);
+}
+
+/* Collapse 折叠面板标题hover效果 */
+.el-collapse .el-collapse-item__header.focusing:focus:not(:hover){
+  color: var(--color-primary);
+}
+/* 选中面板左侧添加伪元素背景色 */
+.centerHeight .el-collapse-item__header.is-active::before{
+  background-color: var(--color-primary);
+}
+/* 折叠面板打开箭头图标背景颜色 */
+.centerHeight .el-collapse-item__arrow{
+  background-color: var(--color-primary-light-1);
+}
+/* 折叠面板打开箭头图标颜色 */
+.centerHeight .el-collapse-item__header .el-icon-arrow-right:before{
+  color: var(--color-primary);
+}
+
+/* 开发测试平台 -> 开发中心 ->流程配置->节点维护 表格节点名称列 行内添加按钮popover样式  */
+.el-popover.el-popper.pop-add-node-wrap .pop-add-table-icon:hover{
+  background-color: var(--color-primary);
+}
+/* 开发测试平台 -> 组件中心 -> 表单控件工厂 ->列表详情按钮样式  */
+.component-factory .component-factory-main .view-detail{
+  color:var(--color-primary);
+  background-color: var(--color-primary-light-1);
+}
+/* 开发测试平台 -> 组件中心 -> 表单控件工厂 ->列表详情按钮鼠标悬浮样式  */
+.component-factory .component-factory-main .view-detail:hover,
+/* 开发测试平台 -> 组件中心 -> 表单控件工厂 ->组件详情弹窗 组件模板预览代码切换按钮选中样式  */
+body .comp-detail .comp-detail-body .function-butn .icon-butn.is-active{
+  background-color:var(--color-primary);
+  color: var(--color-white);
+}
+/* 开发测试平台 -> 组件中心 -> 数据源维护 ->左侧列表 选中后左侧小边框样式  */
+.data-source .left-bg .left-list .left-list-ul .isActive:before{
+  background-color:var(--color-primary);
+}
+/* 开发测试平台 -> 组件中心 -> 数据源维护 ->左侧列表 选中后背景样式  */
+.data-source .left-bg .left-list .left-list-ul .isActive,
+/* 开发测试平台 -> 组件中心 -> 数据源维护 ->左侧列表 鼠标悬浮后背景样式  */
+.data-source .left-bg .left-list .left-list-ul .left-list-li:hover{
+  background-color: var(--color-primary-light-1);
+}
+/* 开发测试平台 -> 组件中心 -> 数据源维护 ->新建数据连接弹窗 连接配置板块 生成地址字体样式  */
+.edit-database .create-address .el-form-item__content .el-input-group__append,
+.edit-database .create-address-en .el-form-item__content .el-input-group__append{
+  color:var(--color-primary);
+}
+/* 开发测试平台 -> 组件中心 -> 数据源维护 ->新建数据连接弹窗 选择数据库板块 选中数据样式  */
+.edit-database .isAcitve,
+.edit-database .database-list:hover{
+  border:1px solid var(--color-primary);
+}
+/* 开发测试平台 -> 组件中心 -> 数据源维护 ->新建数据连接弹窗 选择数据库板块 选中数据图标样式  */
+.edit-database .database-list em{
+  color:var(--color-primary);
+}
+
+/* 高级规则弹窗 */
+/* 和、或按钮的边框和背景色 */
+.QueryBuilder .query-build-container .btn-primary:active,
+.QueryBuilder .query-build-container .btn-primary.active,
+.QueryBuilder .query-build-container .open > .dropdown-toggle.btn-primary{
+  background-color: var(--color-primary-light-7);
+  border-color: var(--color-primary);
+}
+.QueryBuilder .query-build-container .query-builder .rules-group-container .rules-group-body .rules-list > *::before,
+.QueryBuilder .query-build-container .query-builder .rules-group-container .rules-group-body .rules-list > *::after,
+.QueryBuilder .query-build-container .btn-primary{
+  border-color: var(--color-primary);
+}
+/* 开发测试平台 -> 业务系统集成 -> 业务系统注册 ->业务详情 设计字段按钮鼠标悬浮样式 */
+.business-system-details .content .business-operation .design-field:hover,
+/* 开发测试平台 -> 业务系统集成 -> 业务系统注册 ->业务详情 编辑图标按钮鼠标悬浮样式 */
+.business-system-details .content .business-operation .modification-delete .compile1:hover{
+  background: var(--color-primary-light-1);
+  color: var(--color-primary);
+}
+/* 开发测试平台 -> 业务系统集成 -> 业务系统注册 ->业务详情 设计字段弹框顶部步骤条序号背景色 */
+.details-field .header-drawer .title-content .business-info .one.active{
+  background-color: var(--color-primary);
+}
+/* 开发测试平台 -> 业务系统集成 -> 业务系统注册 ->业务详情 设计字段弹框组件宽度选中字体颜色 */
+.details-field .el-radio-button__orig-radio:checked + .el-radio-button__inner{
+   color: var(--color-primary);
+}
+/* tag标签 */
+/* 标签样式 */
+body .el-tag{
+  background-color: var(--color-primary-light-1);
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+}
+/* 删除图标样式 */
+body .el-tag .el-icon-close{
+  color: var(--color-primary);
+}
+body .el-tag .el-icon-close:hover{
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}

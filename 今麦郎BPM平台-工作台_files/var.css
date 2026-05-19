@@ -1,0 +1,193 @@
+:root {
+  /* 页面主题色 定义颜色 */
+  --color-primary:#ff0005;
+  /* 稀释主题色 */
+  --color-white: #fff;
+  /* 加深主题色 */
+  --color-black: #000;
+  /* 有背景色的文字或者背景色 */
+  --color-fill-text-white: #fff;
+  /* 背景色为主题色的文字颜色 */
+  --color-text-color: #fff;
+  /* 公共透明色 */
+  --color-transparent: transparent;
+  /* 公共 error */
+  --color-error:#F13549;
+  /* 公共 success */
+  --color-success: #00BA82;
+  /* 角标颜色 */
+  --color-badge: #ff0005;
+  /* 气泡未读颜色 */
+  --color-unread: #F13549;
+  /* 主要文字颜色 */
+  --color-text-primary:rgba(24, 32, 51, 0.96);
+  /* 常规文字颜色 */
+  --color-text-regular:rgba(24, 32, 51, 0.87);
+  /* 次要文字颜色 */
+  --color-text-secondary:rgba(24, 32, 51, 0.45);
+  /* 提示/禁用文字颜色 */
+  --color-text-placeholder: rgba(24, 32, 51, 0.3);
+
+  /* steps */
+  --steps-process-border-color:#F2F1F6;
+
+  /* button禁用样式 */
+  --button-disabled-background-color:rgba(24, 32, 51, 0.06);
+  --button-disabled-border-color:#ebeef5;
+
+
+  /* 页面主题色 由浅入深 */
+  --color-primary-light-1: color-mix(in srgb, var(--color-white), var(--color-primary) 10%);
+  --color-primary-light-2: color-mix(in srgb, var(--color-white), var(--color-primary) 20%);
+  --color-primary-light-3: color-mix(in srgb, var(--color-white), var(--color-primary) 30%);
+  --color-primary-light-5: color-mix(in srgb, var(--color-white), var(--color-primary) 50%);
+  --color-primary-light-7: color-mix(in srgb, var(--color-white), var(--color-primary) 70%);
+  --color-primary-light-9: color-mix(in srgb, var(--color-white), var(--color-primary) 90%);
+
+  /* 头部选中状态下的样式有用到 */
+  --color-primary-black-9: color-mix(in srgb, var(--color-black), var(--color-primary) 90%);
+
+
+  /* menu */
+  --menu-color: var(--color-primary);
+  --menu-actived-fill-color: var(--color-primary-light-1);
+  /* menu  顶部导航激活状态的背景颜色 */
+  --header-fill-active: var(--color-primary-black-9);
+
+  /* table */
+  --table-link-color: var(--color-primary);
+  /* 树型表格内图标颜色 */
+  --matrixTable-icon-color:var(--color-primary);
+
+  /* input */
+  --input-border-color: var(--color-primary);
+
+  /* radio */
+  --radio-active-icon-color: var(--color-primary);
+  --radio-active-text-color: var(--color-primary);
+
+  /* loading */
+  --loading-color: var(--color-primary);
+
+  /* checkbox */
+  --checkbox-color: var(--color-primary);
+  --checkbox-fill-color: var(--color-primary);
+
+  /* button */
+  --button-text-color: var(--color-primary);
+  --button-fill-color: var(--color-primary-light-1);
+  --button-border-color: var(--color-primary-light-5);
+  /* 默认按钮禁用状态下样式 */
+  --button-default-disabled-text-color: var(--color-text-placeholder);
+  --button-default-disabled-fill-color: var(--color-text-placeholder);
+  --button-default-disabled-border-color: var(--color-text-placeholder);
+  /* 主要按钮的颜色 */
+  --buttom-primary-text-color: var(--color-fill-text-white);
+  --buttom-primary-background-color: var(--color-primary);
+  --buttom-primary-border-color: var(--color-primary);
+  /* 主要按钮 hover颜色 */
+  --buttom-primary-hover-text-color: var(--color-fill-text-white);
+  --buttom-primary-hover-background-color: var(--color-primary-light-7);
+  --buttom-primary-hover-border-color: var(--color-primary-light-7);
+  /* 主要按钮禁用状态下的颜色 */
+  --buttom-primary-disabled-text-color: var(--color-fill-text-white);
+  --buttom-primary-disabled-background-color: var(--color-primary-light-5);
+  --buttom-primary-disabled-border-color: var(--color-primary-light-5);
+  /* 朴素按钮的颜色 */
+  --buttom-isPlain-text-color: var(--color-primary);
+  --buttom-isPlain-background-color: var(--color-primary-light-1);
+  --buttom-isPlain-border-color: var(--color-primary-light-5);
+  /* 朴素按钮 hover颜色 */
+  --buttom-isPlain-default-hover-text-color: var(--color-fill-text-white);
+  --buttom-isPlain-hover-text-color: var(--color-primary);
+  --buttom-isPlain-hover-background-color: var(--color-primary-light-2);
+  --buttom-isPlain-hover-border-color: var(--color-primary-light-7);
+  /* 朴素按钮禁用状态下的颜色 */
+  --buttom-isPlain-disabled-text-color: var(--color-primary-light-5);
+  --buttom-isPlain-disabled-background-color: var(--color-primary-light-1);
+  --buttom-isPlain-disabled-border-color: var(--color-primary-light-2);
+  /* 按钮禁用状态下置灰的颜色 */
+  --buttom-disabled-text-color: var(--color-text-placeholder);
+  --buttom-disabled-background-color: var(--button-disabled-background-color);
+  --buttom-disabled-border-color: var(--button-disabled-border-color);
+
+
+  /* 字体图标 */
+  --primary-icon: var(--color-primary);
+  --icon-background-color: var(--color-primary-light-1);
+
+  /*Drawer */
+  /* 抽屉顶部关闭按钮图标颜色色 */
+  --drawer-closeBtn-color: var(--color-primary);
+  /* 抽屉顶部关闭按钮背景色 */
+  --drawer-closeBtn-background-color: var(--color-primary-light-1);
+
+  /* Pagination */
+  /* 分页按钮文本颜色 */
+  --pagination-text-color: var(--color-primary);
+  /* 分页按钮背景色 */
+  --pagination-fill-background-color: var(--color-primary-light-1);
+
+  /* Tabs */
+  /* tab标签字体颜色 */
+  --tabs-text-color: var(--color-primary);
+  /* tab标签背景色 */
+  --tabs-background-color: var(--color-primary);
+  /* tab标签选中背景色 */
+  --tabs-active-fill-color: var(--color-primary-light-1);
+  /* tab 卡片类型 标签背景色 */
+  --tabs-card-fill-color: var(--color-primary-light-1);
+  /* tab 卡片类型 标签选中背景色 */
+  --tabs-card-fill-active-color: var(--color-primary-light-2);
+
+  /* Breadcrumb*/
+  /*面包屑链接字体颜色 */
+  --breadcrumb-text-color: var(--tabs-text-color);
+
+  /* Tree */
+  --tree-color: var(--color-primary);
+  --tree-fill-color: var(--color-primary-light-1);
+
+  /* Date */
+  --date-color: var(--color-primary);
+  --date-fill-color: var(--color-primary-light-1);
+
+  /* 页面元素分类 end */
+  /* Cascader 级联选择器 */
+  --cascader-active-color: var(--color-primary);
+
+  /* switch 开关 */
+  --switch-active-color: var(--color-primary);
+
+  /* Slider 滑块 */
+  --slider-active-color: var(--color-primary);
+
+  /* Steps 步骤条 */
+  /* 步骤条边框颜色 */
+  --steps-border-color: var(--color-primary);
+  /* 步骤条字体颜色 */
+  --steps-text-color: var(--color-primary);
+  /* 简洁风格步骤条选中时背景色 */
+  --steps-simple-process-full-color: var(--color-primary);
+  /* 简洁风格步骤条选中时边框颜色 */
+  --steps-simple-process-border-color: var(--steps-process-border-color) var(--steps-process-border-color) var(--steps-process-border-color) var(--color-primary);
+  /* 简洁风格步骤条完成时边框颜色 */
+  --steps-simple-success-border-color: var(--color-primary) var(--color-primary) var(--color-primary) var(--color-primary-light-1);
+  /* 简洁风格步骤条完成时背景颜色 */
+  --steps-simple-success-full-color: var(--color-primary-light-1);
+
+
+  /* 流程配置-节点列表-选人规则列-场景列表按钮 */
+  --color-scenes-setting: var(--color-primary);
+  --background-scenes-setting: rgba(68, 105, 236, 0.08);
+
+  /* 流程配置-节点列表-选人规则（齿轮图标）未配置 */
+  --color-not-setting: var(--color-error);
+  --background-not-setting: #FDEBED;
+  --border-not-setting: 1px solid #F7C7CF;
+
+  /* 流程配置-节点列表-选人规则（齿轮图标）已配置 */
+  --color-active-setting: var(--color-success);
+  --background-active-setting: rgba(0, 186, 130, 0.0800);
+  --border-active-setting: 1px solid rgba(0, 186, 130, 0.1200);
+}
