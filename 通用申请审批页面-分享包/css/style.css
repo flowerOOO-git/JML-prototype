@@ -94,22 +94,21 @@ iframe {
   color: #3b4660;
 }
 
-.pdf-modal-tip {
-  margin: 0;
-  padding: 8px 16px;
-  background: #fff7e6;
-  border-bottom: 1px solid #ffe7ba;
-  color: #ad6800;
-  font-size: 12px;
-  line-height: 1.5;
-}
-
 .pdf-modal-body {
   padding: 14px 16px;
   overflow: auto;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
+}
+
+.pdf-modal-tip {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 4px 2px 0;
+  color: #ff0005;
+  font-size: 12px;
+  line-height: 1.5;
 }
 
 .pdf-panel {

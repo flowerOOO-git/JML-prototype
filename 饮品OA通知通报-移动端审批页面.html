@@ -299,6 +299,14 @@
       align-items: center;
     }
 
+    .pdf-modal-tip {
+      margin: 0;
+      padding: 8px 14px 4px;
+      color: #ff0005;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
     .pdf-close {
       border: 0;
       background: transparent;
@@ -710,6 +718,7 @@
         <div class="pdf-block-title">已选附件顺序（可拖拽）</div>
         <ul id="pdfSelectedList" class="pdf-list"></ul>
       </div>
+      <p class="pdf-modal-tip">仅支持图片、word、excel、ppt、pdf合并下载！</p>
       <div class="pdf-footer">
         <div id="pdfStatus" class="pdf-status"></div>
         <div class="pdf-actions">
@@ -1021,7 +1030,7 @@
     };
 
     const openPdfModal = () => {
-      selectedOrder = attachmentsData.filter((x) => x.isForm).map((x) => x.id);
+      selectedOrder = attachmentsData.map((x) => x.id);
       setPdfStatus("");
       renderPdfModal();
       pdfModalMask.style.display = "flex";
