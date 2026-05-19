@@ -18,9 +18,16 @@
         <span>PDF下载</span>
         <button id="pdfModalClose" class="pdf-modal-close" type="button" aria-label="关闭">×</button>
       </div>
+      <p class="pdf-modal-tip">仅支持图片、word、excel、ppt、pdf合并下载！</p>
       <div class="pdf-modal-body">
         <div class="pdf-panel">
-          <div class="pdf-panel-title">附件列表（可多选）</div>
+          <div class="pdf-panel-title pdf-panel-title-row">
+            <span>附件列表（可多选）</span>
+            <label class="pdf-select-all">
+              <input id="pdfSelectAll" type="checkbox" />
+              <span>全选</span>
+            </label>
+          </div>
           <ul id="pdfAttachmentList" class="pdf-list"></ul>
         </div>
         <div class="pdf-panel">

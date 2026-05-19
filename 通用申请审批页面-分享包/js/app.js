@@ -14,6 +14,34 @@ let selectedOrder = [];
 let pdfDownloading = false;
 let draggingFileId = null;
 
+const pdfSelectAllEl = document.getElementById("pdfSelectAll");
+
+const updatePdfSelectAllState = () => {
+  if (!pdfSelectAllEl) return;
+  const allIds = modalAttachments.map((f) => f.id);
+  if (!allIds.length) {
+    pdfSelectAllEl.checked = false;
+    pdfSelectAllEl.indeterminate = false;
+    return;
+  }
+  const selectedCount = allIds.filter((id) => selectedOrder.includes(id)).length;
+  pdfSelectAllEl.checked = selectedCount === allIds.length;
+  pdfSelectAllEl.indeterminate = selectedCount > 0 && selectedCount < allIds.length;
+};
+
+const applyPdfSelectAll = (checked) => {
+  selectedOrder = checked ? modalAttachments.map((f) => f.id) : [];
+  if (typeof window.__renderActivePdfModal === "function") {
+    window.__renderActivePdfModal();
+  }
+};
+
+if (pdfSelectAllEl) {
+  pdfSelectAllEl.addEventListener("change", () => {
+    applyPdfSelectAll(pdfSelectAllEl.checked);
+  });
+}
+
 frame.addEventListener("load", () => {
   try {
     const doc = frame.contentDocument || frame.contentWindow.document;
@@ -509,12 +537,14 @@ frame.addEventListener("load", () => {
           pdfSelectedListEl.appendChild(li);
         });
       }
+      updatePdfSelectAllState();
     };
 
     const openPdfModal = () => {
       modalAttachments = collectAttachments();
-      selectedOrder = modalAttachments.filter((f) => f.isForm).map((f) => f.id);
+      selectedOrder = modalAttachments.map((f) => f.id);
       setPdfStatus("");
+      window.__renderActivePdfModal = renderPdfModal;
       renderPdfModal();
       pdfModalMask.style.display = "flex";
     };
@@ -1140,6 +1170,7 @@ const renderFallbackModal = () => {
 
   if (!selectedOrder.length) {
     pdfSelectedListEl.innerHTML = `<li class="pdf-empty">请先勾选附件</li>`;
+    updatePdfSelectAllState();
     return;
   }
 
@@ -1204,12 +1235,14 @@ const renderFallbackModal = () => {
     });
     pdfSelectedListEl.appendChild(li);
   });
+  updatePdfSelectAllState();
 };
 
 const openFallbackPdfModal = () => {
   modalAttachments = fallbackAttachmentSeed.map((item) => ({ ...item }));
-  selectedOrder = modalAttachments.filter((f) => f.isForm).map((f) => f.id);
+  selectedOrder = modalAttachments.map((f) => f.id);
   setFallbackStatus("");
+  window.__renderActivePdfModal = renderFallbackModal;
   renderFallbackModal();
   pdfModalMask.style.display = "flex";
 };

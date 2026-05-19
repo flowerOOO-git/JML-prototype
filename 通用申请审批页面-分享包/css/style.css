@@ -94,6 +94,16 @@ iframe {
   color: #3b4660;
 }
 
+.pdf-modal-tip {
+  margin: 0;
+  padding: 8px 16px;
+  background: #fff7e6;
+  border-bottom: 1px solid #ffe7ba;
+  color: #ad6800;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
 .pdf-modal-body {
   padding: 14px 16px;
   overflow: auto;
@@ -117,6 +127,32 @@ iframe {
   font-weight: 600;
   border-bottom: 1px solid #e8edf7;
   color: #2f3b52;
+}
+
+.pdf-panel-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.pdf-select-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #5b677a;
+  cursor: pointer;
+  user-select: none;
+}
+
+.pdf-select-all input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  accent-color: #f5222d;
+  margin: 0;
+  flex: 0 0 auto;
 }
 
 .pdf-list {
