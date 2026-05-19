@@ -61,10 +61,28 @@ frame.addEventListener("load", () => {
       .clone-reply-log-table {
         width: 100%;
         border-collapse: collapse;
-        table-layout: fixed;
+        table-layout: auto;
         font-size: 13px;
         color: rgba(0, 0, 0, 0.65);
         background: #fff;
+      }
+      .clone-reply-log-table .col-node,
+      .clone-reply-log-table .col-action {
+        width: 1%;
+        white-space: nowrap;
+      }
+      .clone-reply-log-table .col-time {
+        width: 1%;
+        min-width: 158px;
+        white-space: nowrap;
+      }
+      .clone-reply-log-table .col-opinion {
+        min-width: 32%;
+        width: auto;
+      }
+      .clone-reply-log-table .col-attachment-col {
+        width: 22%;
+        min-width: 160px;
       }
       .clone-reply-log-table th {
         background: #fafafa;
@@ -619,6 +637,7 @@ frame.addEventListener("load", () => {
     const replyLogAttachmentSamples = [
       "食品事业部子公司印章使用申请-SPBZ-202512180002.pdf",
       "4.1平台技术架构图_V1.pptx",
+      "现场核查照片.png",
     ];
 
     const replyLogRows = [
@@ -676,6 +695,87 @@ frame.addEventListener("load", () => {
         opinion: "同意",
         attachments: [replyLogAttachmentSamples[0], replyLogAttachmentSamples[1]],
       },
+      {
+        index: 7,
+        node: "事业部总经理",
+        handler: "赵六",
+        action: "后加签->刘七,陈八",
+        time: "2025.10.30 11:02:18",
+        opinion: "请刘七、陈八在后序节点补充意见",
+        attachments: [],
+      },
+      {
+        index: 8,
+        node: "后加签",
+        handler: "刘七",
+        action: "同意",
+        time: "2025.10.30 14:15:33",
+        opinion: "后加签意见：材料齐全，同意",
+        attachments: [replyLogAttachmentSamples[2]],
+      },
+      {
+        index: 9,
+        node: "后加签",
+        handler: "陈八",
+        action: "同意",
+        time: "2025.10.30 15:22:41",
+        opinion: "财务口径已确认，同意",
+        attachments: [],
+      },
+      {
+        index: 10,
+        node: "人资审批（会签）",
+        handler: "李四",
+        action: "转审->王五",
+        time: "2025.10.31 09:20:06",
+        opinion: "转交王五复核人事相关条款",
+        attachments: [replyLogAttachmentSamples[0]],
+      },
+      {
+        index: 11,
+        node: "转审",
+        handler: "王五",
+        action: "同意",
+        time: "2025.10.31 10:08:42",
+        opinion: "转审完成，条款无异常",
+        attachments: [],
+      },
+      {
+        index: 12,
+        node: "部门主管（依次审批）",
+        handler: "张三",
+        action: "退回->人资审批（会签）",
+        time: "2025.11.01 15:30:12",
+        opinion: "人资审批意见不完整，请补充后重新提交",
+        attachments: [replyLogAttachmentSamples[1]],
+      },
+      {
+        index: 13,
+        node: "人资审批（会签）",
+        handler: "李四",
+        action: "驳回",
+        time: "2025.11.02 08:55:27",
+        opinion: "申请事由与制度不符，予以驳回",
+        attachments: [],
+      },
+      {
+        index: 14,
+        node: "发起人",
+        handler: "王晓明",
+        action: "重新提交",
+        time: "2025.11.02 14:18:36",
+        opinion: "已按驳回意见补充说明并重新提交",
+        attachments: [replyLogAttachmentSamples[0]],
+      },
+      {
+        index: 15,
+        node: "发起人",
+        handler: "王晓明",
+        action: "撤销",
+        time: "2025.11.03 09:06:12",
+        opinion: "暂不办理，先撤回流程",
+        attachments: [],
+      },
     ];
 
     const getReplyLogAttachments = (row) => {
@@ -695,22 +795,27 @@ frame.addEventListener("load", () => {
         pdf: "pai-wps-pdf",
         ppt: "pai-wps-ppt",
         pptx: "pai-wps-ppt",
-        png: "pai-wps-png",
-        jpg: "pai-wps-jpg",
-        jpeg: "pai-wps-jpg",
-        doc: "pai-wps-doc",
-        docx: "pai-wps-doc",
-        xls: "pai-wps-xls",
-        xlsx: "pai-wps-xls",
+        png: "pai-wps-img",
+        jpg: "pai-wps-img",
+        jpeg: "pai-wps-img",
+        gif: "pai-wps-img",
+        webp: "pai-wps-img",
+        bmp: "pai-wps-img",
+        doc: "pai-wps-word",
+        docx: "pai-wps-word",
+        xls: "pai-wps-excel",
+        xlsx: "pai-wps-excel",
       };
-      return iconMap[ext] || "pai-wps-unknown";
+      return iconMap[ext] || "pai-wps-word";
     };
 
     const buildReplyLogOpIconsHtml = (fileName) => {
       if (!fileName) return "";
       const ext = getReplyLogFileExt(fileName);
-      const showPreview = ext === "pdf" || ext === "png";
-      const showDownload = ext !== "png";
+      const imageExts = ["png", "jpg", "jpeg", "gif", "webp", "bmp"];
+      const isImage = imageExts.includes(ext);
+      const showPreview = ext === "pdf" || isImage;
+      const showDownload = ext === "pdf" || (ext && !isImage);
       return `
         <span class="approve-op-icons">
           ${showPreview ? `<span class="icon-btn" title="预览" aria-label="预览"><svg viewBox="0 0 24 24"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"></path><circle cx="12" cy="12" r="2.8"></circle></svg></span>` : ""}
@@ -724,7 +829,7 @@ frame.addEventListener("load", () => {
         <div class="reply-log-attach-item">
           <div class="file-name-column">
             <span class="icon-area">
-              <svg aria-hidden="true" class="file-type-icon"><use xlink:href="#${iconId}"></use></svg>
+              <svg aria-hidden="true" class="file-type-icon"><use href="#${iconId}" xlink:href="#${iconId}"></use></svg>
             </span>
             <span class="file-name-text"><span class="downloadSpan" title="${fileName}">${fileName}</span></span>
             ${buildReplyLogOpIconsHtml(fileName)}
@@ -745,11 +850,11 @@ frame.addEventListener("load", () => {
           return `
         <tr>
           <td class="col-index">${row.index}</td>
-          <td>${row.node}</td>
-          <td>${row.handler}</td>
-          <td>${row.action}</td>
-          <td>${row.time}</td>
-          <td>${row.opinion}</td>
+          <td class="col-node">${row.node}</td>
+          <td class="col-handler">${row.handler}</td>
+          <td class="col-action">${row.action}</td>
+          <td class="col-time">${row.time}</td>
+          <td class="col-opinion">${row.opinion}</td>
           <td class="col-attachment">${buildReplyLogAttachmentsCellHtml(attachments)}</td>
         </tr>`;
         })
@@ -758,23 +863,23 @@ frame.addEventListener("load", () => {
     const buildReplyLogTableHtml = () => `
       <table class="clone-reply-log-table" cellspacing="0" cellpadding="0" border="0">
         <colgroup>
-          <col style="width: 44px;">
-          <col style="width: 128px;">
-          <col style="width: 64px;">
-          <col style="width: 88px;">
-          <col style="width: 132px;">
-          <col style="width: 14%;">
-          <col style="width: 30%;">
+          <col class="col-index" style="width: 44px;">
+          <col class="col-node">
+          <col class="col-handler" style="width: 72px;">
+          <col class="col-action">
+          <col class="col-time">
+          <col class="col-opinion">
+          <col class="col-attachment-col">
         </colgroup>
         <thead>
           <tr>
-            <th>序号</th>
-            <th>节点</th>
-            <th>处理人</th>
-            <th>处理操作</th>
-            <th>处理时间</th>
-            <th>处理意见</th>
-            <th>附件</th>
+            <th class="col-index">序号</th>
+            <th class="col-node">节点</th>
+            <th class="col-handler">处理人</th>
+            <th class="col-action">处理操作</th>
+            <th class="col-time">处理时间</th>
+            <th class="col-opinion">处理意见</th>
+            <th class="col-attachment-col">附件</th>
           </tr>
         </thead>
         <tbody>${buildReplyLogBodyHtml()}</tbody>
@@ -788,7 +893,16 @@ frame.addEventListener("load", () => {
       let section = doc.getElementById("clone-reply-log-section");
       if (section && !section.isConnected) section = null;
 
-      if (section?.isConnected) return;
+      if (section?.isConnected) {
+        const tbody = section.querySelector(".clone-reply-log-table tbody");
+        if (tbody) {
+          const refreshObserver = frame._approveFixObserver;
+          if (refreshObserver) refreshObserver.disconnect();
+          tbody.innerHTML = buildReplyLogBodyHtml();
+          if (refreshObserver) refreshObserver.observe(doc.body, { childList: true, subtree: true });
+        }
+        return;
+      }
 
       section = doc.createElement("div");
       section.id = "clone-reply-log-section";
