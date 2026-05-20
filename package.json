@@ -1,0 +1,7 @@
+{
+  "name": "jml-prototype",
+  "private": true,
+  "scripts": {
+    "build": "bash scripts/build-netlify.sh"
+  }
+}
