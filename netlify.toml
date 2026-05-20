@@ -1,0 +1,38 @@
+[build]
+  publish = "."
+  command = "echo 'static site — no build step'"
+
+[[redirects]]
+  from = "/"
+  to = "/开发环境页面复刻-分享包/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/dev"
+  to = "/开发环境页面复刻-分享包/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/approve"
+  to = "/通用申请审批页面-分享包/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/mobile"
+  to = "/饮品OA通知通报-移动端审批页面.html"
+  status = 200
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+
+[[headers]]
+  for = "/开发环境页面复刻-分享包/*"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+
+[[headers]]
+  for = "/通用申请审批页面-分享包/*"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
