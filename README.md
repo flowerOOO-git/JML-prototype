@@ -22,13 +22,17 @@ python3 -m http.server 8080
 
 ## Netlify 部署
 
-已包含 `netlify.toml`，发布目录为仓库根目录 `.`。
+已包含 `netlify.toml`。构建时会执行 `scripts/build-netlify.sh`，将中文路径重命名为 ASCII 后输出到 `dist/`（Netlify 对中文文件名支持不稳定）。
 
-部署后短链：
+发布目录：`dist`（由 Netlify 自动构建，无需本地提交 `dist/`）。
 
-- `/` 或 `/dev` → 开发环境复刻
-- `/approve` → 通用申请审批
-- `/mobile` → 移动端审批页
+部署后短链（均为英文路径）：
+
+- `/` 或 `/dev` → `/dev-replica/index.html`（开发环境复刻）
+- `/approve` → `/approve-share/index.html`（通用申请审批）
+- `/mobile` → `/mobile-approve.html`（移动端审批）
+
+若仍 404，请在 Netlify 控制台执行 **Clear cache and deploy**，并确认 Build command 为 `bash scripts/build-netlify.sh`、Publish directory 为 `dist`。
 
 ## 说明
 

@@ -1,25 +1,25 @@
 [build]
-  publish = "."
-  command = "echo 'static site — no build step'"
+  publish = "dist"
+  command = "bash scripts/build-netlify.sh"
 
 [[redirects]]
   from = "/"
-  to = "/开发环境页面复刻-分享包/index.html"
+  to = "/dev-replica/index.html"
   status = 200
 
 [[redirects]]
   from = "/dev"
-  to = "/开发环境页面复刻-分享包/index.html"
+  to = "/dev-replica/index.html"
   status = 200
 
 [[redirects]]
   from = "/approve"
-  to = "/通用申请审批页面-分享包/index.html"
+  to = "/approve-share/index.html"
   status = 200
 
 [[redirects]]
   from = "/mobile"
-  to = "/饮品OA通知通报-移动端审批页面.html"
+  to = "/mobile-approve.html"
   status = 200
 
 [[headers]]
@@ -28,11 +28,11 @@
     Cache-Control = "no-cache, no-store, must-revalidate"
 
 [[headers]]
-  for = "/开发环境页面复刻-分享包/*"
+  for = "/dev-replica/*"
   [headers.values]
     Cache-Control = "no-cache, no-store, must-revalidate"
 
 [[headers]]
-  for = "/通用申请审批页面-分享包/*"
+  for = "/approve-share/*"
   [headers.values]
     Cache-Control = "no-cache, no-store, must-revalidate"
